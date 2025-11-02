@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Django
+/db.sqlite3
+/media/
+/staticfiles/
+
+# Node.js
+node_modules/
+package-lock.json
+
+# Build files
+/dist/
+/build/
+
+# Envs/IDE
+.env
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Vite
+.vite/
+*.local
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

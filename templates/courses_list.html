@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Courses — 9kloud{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+      <div>
+        <h5 class="text-primary text-uppercase mb-1" style="letter-spacing: 5px;">Courses</h5>
+        <h1 class="m-0">Explore Our Courses</h1>
+      </div>
+      {% if q %}<div class="text-muted">Search: “{{ q }}”</div>{% endif %}
+    </div>
+    <div class="row">
+      {% for c in courses %}
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="rounded overflow-hidden mb-2">
+          {% if c.cover_image %}
+          <img class="img-fluid" src="/static/{{ c.cover_image }}" alt="{{ c.title }}">
+          {% endif %}
+          <div class="bg-secondary p-4">
+            <div class="d-flex justify-content-between mb-3">
+              <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ c.students|intcomma }} Students</small>
+              <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{ c.duration_minutes|floatformat:0 }}m</small>
+            </div>
+            <a class="h5" href="/courses/{{ c.slug }}/">{{ c.title }}</a>
+            <div class="border-top mt-4 pt-4">
+              <div class="d-flex justify-content-between">
+                <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ c.rating }} <small>({{ c.students|intcomma }})</small></h6>
+                <h5 class="m-0">₦{{ c.price_cents|floatformat:-2|intcomma }}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <div class="col-12 text-center text-muted">No courses yet.</div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

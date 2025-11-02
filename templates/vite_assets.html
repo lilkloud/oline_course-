@@ -1,0 +1,13 @@
+{% if is_development %}
+  <!-- Development: Include Vite HMR client and main entry point -->
+  <script type="module" src="{{ vite_hmr_url }}"></script>
+{% else %}
+  <!-- Production: Include all CSS and JS files from manifest -->
+  {% for css_file in css_files %}
+    <link rel="stylesheet" href="{{ css_file }}">
+  {% endfor %}
+  
+  {% for js_file in js_files %}
+    <script type="module" src="{{ js_file }}" defer></script>
+  {% endfor %}
+{% endif %}

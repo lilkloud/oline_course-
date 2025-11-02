@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Contact — 9kloud{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-5">
+  <div class="container py-5">
+    <div class="text-left mb-4">
+      <h5 class="text-primary text-uppercase mb-3" style="letter-spacing:5px;">Contact</h5>
+      <h1>We'd love to hear from you</h1>
+      <p class="text-muted">Have questions about courses, enrollment, or partnerships? Send us a message.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-7 mb-4">
+        <form method="post" action="#">
+          {% csrf_token %}
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" class="form-control border-0 p-3 bg-secondary text-white" placeholder="Full name" required>
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" class="form-control border-0 p-3 bg-secondary text-white" placeholder="email@example.com" required>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea class="form-control border-0 p-3 bg-secondary text-white" rows="6" placeholder="How can we help?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary px-4">Send Message</button>
+        </form>
+      </div>
+      <div class="col-lg-5">
+        <div class="bg-secondary text-white p-4 rounded">
+          <h5 class="mb-3">Contact Info</h5>
+          <p class="mb-2"><i class="fa fa-phone-alt text-primary mr-2"></i>09042958686</p>
+          <p class="mb-2"><i class="fa fa-envelope text-primary mr-2"></i>nnamelekelechi9@gmail.com</p>
+          <div class="d-flex mt-3">
+            <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-outline-light btn-square mr-2" href="#"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-outline-light btn-square" href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

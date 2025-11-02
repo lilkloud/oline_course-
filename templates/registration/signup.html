@@ -1,0 +1,244 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign Up — {{ block.super }}{% endblock %}
+
+{% block meta_description %}Create a new 9kloud account to start learning with our online courses. Join our community of learners today.{% endblock %}
+
+{% block content %}
+<main class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+      <div class="card shadow-sm">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Create your account</h1>
+            <p class="text-muted">Join our community of learners</p>
+          </div>
+
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+              <i class="fas fa-exclamation-circle me-2"></i>
+              {% for error in form.non_field_errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            
+            <div class="row">
+              <!-- First Name -->
+              <div class="col-md-6 mb-3">
+                <label for="id_first_name" class="form-label">First name</label>
+                <input type="text" 
+                       name="first_name" 
+                       id="id_first_name" 
+                       class="form-control form-control-lg" 
+                       placeholder="First name"
+                       value="{{ form.first_name.value|default:'' }}"
+                       required>
+                {% if form.first_name.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.first_name.errors.0 }}
+                  </div>
+                {% else %}
+                  <div class="invalid-feedback">
+                    Please enter your first name.
+                  </div>
+                {% endif %}
+              </div>
+
+              <!-- Last Name -->
+              <div class="col-md-6 mb-3">
+                <label for="id_last_name" class="form-label">Last name</label>
+                <input type="text" 
+                       name="last_name" 
+                       id="id_last_name" 
+                       class="form-control form-control-lg" 
+                       placeholder="Last name"
+                       value="{{ form.last_name.value|default:'' }}"
+                       required>
+                {% if form.last_name.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.last_name.errors.0 }}
+                  </div>
+                {% else %}
+                  <div class="invalid-feedback">
+                    Please enter your last name.
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="id_email" class="form-label">Email address</label>
+              <input type="email" 
+                     name="email" 
+                     id="id_email" 
+                     class="form-control form-control-lg" 
+                     placeholder="Enter your email" 
+                     value="{{ form.email.value|default:'' }}"
+                     required>
+              {% if form.email.errors %}
+                <div class="invalid-feedback d-block">
+                  {{ form.email.errors.0 }}
+                </div>
+              {% else %}
+                <div class="invalid-feedback">
+                  Please enter a valid email address.
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+              <label for="id_password1" class="form-label">Password</label>
+              <div class="input-group mb-2">
+                <input type="password" 
+                       name="password1" 
+                       id="id_password1" 
+                       class="form-control form-control-lg" 
+                       placeholder="Create a password" 
+                       required
+                       minlength="8">
+                <button class="btn btn-outline-secondary toggle-password" type="button">
+                  <i class="far fa-eye"></i>
+                </button>
+                {% if form.password1.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.password1.errors.0 }}
+                  </div>
+                {% else %}
+                  <div class="invalid-feedback">
+                    Password must be at least 8 characters long.
+                  </div>
+                {% endif %}
+              </div>
+              <small class="form-text text-muted">
+                <i class="fas fa-info-circle"></i> Use 8 or more characters with a mix of letters, numbers & symbols.
+              </small>
+            </div>
+
+            <!-- Password Confirmation -->
+            <div class="mb-4">
+              <label for="id_password2" class="form-label">Confirm Password</label>
+              <div class="input-group">
+                <input type="password" 
+                       name="password2" 
+                       id="id_password2" 
+                       class="form-control form-control-lg" 
+                       placeholder="Confirm your password" 
+                       required
+                       data-match="#id_password1"
+                       data-match-error="Passwords don't match">
+                <button class="btn btn-outline-secondary toggle-password" type="button">
+                  <i class="far fa-eye"></i>
+                </button>
+                {% if form.password2.errors %}
+                  <div class="invalid-feedback d-block">
+                    {{ form.password2.errors.0 }}
+                  </div>
+                {% else %}
+                  <div class="invalid-feedback">
+                    Passwords must match.
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="form-check mb-4">
+              <input class="form-check-input" 
+                     type="checkbox" 
+                     name="terms" 
+                     id="id_terms" 
+                     required>
+              <label class="form-check-label" for="id_terms">
+                I agree to the <a href="{% url 'terms' %}" target="_blank">Terms of Service</a> and 
+                <a href="{% url 'privacy' %}" target="_blank">Privacy Policy</a>
+              </label>
+              <div class="invalid-feedback">
+                You must agree to the terms and conditions.
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary btn-lg" type="submit">
+                <i class="fas fa-user-plus me-2"></i> Create Account
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center mt-4">
+            <p class="mb-0">Already have an account? 
+              <a href="{% url 'login' %}" class="text-decoration-none">
+                Sign in
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Form validation and password toggle
+(function () {
+  'use strict'
+  
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+  
+  // Password match validation
+  var password = document.getElementById('id_password1')
+  var confirmPassword = document.getElementById('id_password2')
+  
+  function validatePassword() {
+    if (password.value !== confirmPassword.value) {
+      confirmPassword.setCustomValidity("Passwords don't match")
+    } else {
+      confirmPassword.setCustomValidity('')
+    }
+  }
+  
+  password.onchange = validatePassword
+  confirmPassword.onkeyup = validatePassword
+  
+  // Loop over forms and prevent submission if invalid
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      
+      form.classList.add('was-validated')
+    }, false)
+  })
+  
+  // Toggle password visibility
+  document.querySelectorAll('.toggle-password').forEach(function(button) {
+    button.addEventListener('click', function() {
+      const input = this.previousElementSibling;
+      const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+      input.setAttribute('type', type);
+      this.querySelector('i').classList.toggle('fa-eye');
+      this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+  });
+  
+  // Initialize tooltips
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+})()
+</script>
+{% endblock %}

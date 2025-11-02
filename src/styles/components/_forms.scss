@@ -1,0 +1,781 @@
+// Form variables
+$input-focus-border-color: $metallic-gold;
+$input-focus-box-shadow: 0 0 0 0.2rem rgba($metallic-gold, 0.25);
+$input-border-radius: 0.375rem;
+$input-bg: $white;
+$input-color: $midnight-navy;
+$input-border-color: darken($light-gray, 5%);
+$input-placeholder-color: $dark-gray;
+$input-focus-bg: $white;
+$input-disabled-bg: $light-gray;
+$form-feedback-valid-color: $success;
+$form-feedback-invalid-color: $danger;
+$form-text-color: $midnight-navy;
+$form-label-color: $midnight-navy;
+$form-label-font-weight: 600;
+$form-group-margin-bottom: 1.5rem;
+$input-padding-y: 0.75rem;
+$input-padding-x: 1rem;
+$input-line-height: 1.5;
+$input-height: calc(#{$input-line-height * 1em} + #{$input-padding-y * 2} + #{$input-border-width * 2});
+$input-transition: all 0.2s ease-in-out;
+
+// Form controls
+.form-control, .form-select {
+  display: block;
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: $input-line-height;
+  color: $input-color;
+  background-color: $input-bg;
+  background-clip: padding-box;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  box-shadow: 0 1px 2px rgba($black, 0.05);
+  transition: $input-transition;
+  appearance: none;
+  
+  &::placeholder {
+    color: $input-placeholder-color;
+    opacity: 1;
+  }
+  
+  &:focus {
+    color: $input-color;
+    background-color: $input-focus-bg;
+    border-color: $input-focus-border-color;
+    outline: 0;
+    box-shadow: $input-focus-box-shadow;
+  }
+  
+  // Disabled and read-only inputs
+  &:disabled,
+  &[readonly] {
+    background-color: $input-disabled-bg;
+    opacity: 1;
+    cursor: not-allowed;
+  }
+  
+  // File input buttons theming
+  &::file-selector-button {
+    padding: $input-padding-y $input-padding-x;
+    margin: (-$input-padding-y) (-$input-padding-x);
+    margin-inline-end: $input-padding-x;
+    color: $midnight-navy;
+    background-color: $light-gray;
+    pointer-events: none;
+    border: 0 solid;
+    border-right-width: 1px;
+    border-color: inherit;
+    border-radius: 0;
+    transition: $input-transition;
+  }
+  
+  &:hover:not(:disabled):not([readonly])::file-selector-button {
+    background-color: darken($light-gray, 5%);
+  }
+}
+
+// Form labels
+.form-label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-weight: $form-label-font-weight;
+  color: $form-label-color;
+  
+  &.required::after {
+    content: "*";
+    margin-left: 0.25rem;
+    color: $danger;
+  }
+}
+
+// Form text
+.form-text {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: $text-muted;
+}
+
+// Form validation
+.was-validated .form-control:valid,
+.form-control.is-valid {
+  border-color: $form-feedback-valid-color;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2348bb78' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  
+  &:focus {
+    border-color: $form-feedback-valid-color;
+    box-shadow: 0 0 0 0.2rem rgba($form-feedback-valid-color, 0.25);
+  }
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+  border-color: $form-feedback-invalid-color;
+  padding-right: calc(1.5em + 0.75rem);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23f56565'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23f56565' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  
+  &:focus {
+    border-color: $form-feedback-invalid-color;
+    box-shadow: 0 0 0 0.2rem rgba($form-feedback-invalid-color, 0.25);
+  }
+}
+
+// Form validation feedback
+.valid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: $form-feedback-valid-color;
+}
+
+.invalid-feedback {
+  display: none;
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+  color: $form-feedback-invalid-color;
+}
+
+.was-validated :valid ~ .valid-feedback,
+.was-validated :valid ~ .valid-tooltip,
+.is-valid ~ .valid-feedback,
+.is-valid ~ .valid-tooltip {
+  display: block;
+}
+
+.was-validated :invalid ~ .invalid-feedback,
+.was-validated :invalid ~ .invalid-tooltip,
+.is-invalid ~ .invalid-feedback,
+.is-invalid ~ .invalid-tooltip {
+  display: block;
+}
+
+// Form groups
+.form-group {
+  margin-bottom: $form-group-margin-bottom;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Form text
+.form-text {
+  color: $text-muted;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+// Form grid
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -0.5rem;
+  margin-left: -0.5rem;
+  
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+}
+
+// Checkboxes and radios
+.form-check {
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5em;
+  margin-bottom: 0.125rem;
+  
+  .form-check-input {
+    float: left;
+    margin-left: -1.5em;
+    margin-top: 0.25em;
+    vertical-align: top;
+    width: 1em;
+    height: 1em;
+    background-color: $white;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid $input-border-color;
+    appearance: none;
+    color-adjust: exact;
+    transition: background-color 0.15s ease-in-out, background-position 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    
+    &[type="checkbox"] {
+      border-radius: 0.25em;
+    }
+    
+    &[type="radio"] {
+      border-radius: 50%;
+    }
+    
+    &:active {
+      filter: brightness(90%);
+    }
+    
+    &:focus {
+      border-color: $input-focus-border-color;
+      outline: 0;
+      box-shadow: $input-focus-box-shadow;
+    }
+    
+    &:checked {
+      background-color: $primary;
+      border-color: $primary;
+      
+      &[type="checkbox"] {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+      }
+      
+      &[type="radio"] {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+      }
+    }
+    
+    &[type="checkbox"]:indeterminate {
+      background-color: $primary;
+      border-color: $primary;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10h8'/%3e%3c/svg%3e");
+    }
+    
+    &:disabled {
+      pointer-events: none;
+      filter: none;
+      opacity: 0.5;
+      
+      ~ .form-check-label {
+        opacity: 0.5;
+      }
+    }
+  }
+  
+  .form-check-label {
+    color: $form-label-color;
+    cursor: pointer;
+    margin-bottom: 0;
+  }
+}
+
+// Switch
+.form-switch {
+  padding-left: 2.5em;
+  
+  .form-check-input {
+    width: 2em;
+    margin-left: -2.5em;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+    background-position: left center;
+    border-radius: 2em;
+    transition: background-position 0.15s ease-in-out;
+    
+    &:focus {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23c8a951'/%3e%3c/svg%3e");
+    }
+    
+    &:checked {
+      background-position: right center;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    }
+  }
+}
+
+// Form select
+.form-select {
+  display: block;
+  width: 100%;
+  padding: $input-padding-y $input-padding-x;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: $input-line-height;
+  color: $input-color;
+  background-color: $input-bg;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right $input-padding-x center;
+  background-size: 16px 12px;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+  transition: $input-transition;
+  appearance: none;
+  
+  &:focus {
+    border-color: $input-focus-border-color;
+    outline: 0;
+    box-shadow: $input-focus-box-shadow;
+  }
+  
+  &[multiple],
+  &[size]:not([size="1"]) {
+    padding-right: $input-padding-x;
+    background-image: none;
+  }
+  
+  &:disabled {
+    background-color: $input-disabled-bg;
+    opacity: 1;
+  }
+  
+  // Remove outline from select box in FF
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 $input-color;
+  }
+}
+
+// Form range
+.form-range {
+  width: 100%;
+  height: 1.5rem;
+  padding: 0;
+  background-color: transparent;
+  appearance: none;
+  
+  &:focus {
+    outline: 0;
+    
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb {
+      box-shadow: 0 0 0 1px $white, $input-focus-box-shadow;
+    }
+  }
+  
+  &::-moz-focus-outer {
+    border: 0;
+  }
+  
+  &::-webkit-slider-thumb {
+    width: 1rem;
+    height: 1rem;
+    margin-top: -0.25rem;
+    background-color: $primary;
+    border: 0;
+    border-radius: 1rem;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: none;
+    
+    &:active {
+      background-color: darken($primary, 10%);
+    }
+  }
+  
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 0.5rem;
+    color: transparent;
+    cursor: pointer;
+    background-color: $light-gray;
+    border-color: transparent;
+    border-radius: 1rem;
+  }
+  
+  &::-moz-range-thumb {
+    width: 1rem;
+    height: 1rem;
+    background-color: $primary;
+    border: 0;
+    border-radius: 1rem;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: none;
+    
+    &:active {
+      background-color: darken($primary, 10%);
+    }
+  }
+  
+  &::-moz-range-track {
+    width: 100%;
+    height: 0.5rem;
+    color: transparent;
+    cursor: pointer;
+    background-color: $light-gray;
+    border-color: transparent;
+    border-radius: 1rem;
+  }
+  
+  &:disabled {
+    pointer-events: none;
+    
+    &::-webkit-slider-thumb {
+      background-color: $gray-500;
+    }
+    
+    &::-moz-range-thumb {
+      background-color: $gray-500;
+    }
+  }
+}
+
+// Form file
+.form-file {
+  position: relative;
+  
+  .form-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: $input-height;
+    margin: 0;
+    opacity: 0;
+    
+    &:focus ~ .form-file-label {
+      border-color: $input-focus-border-color;
+      box-shadow: $input-focus-box-shadow;
+    }
+    
+    &[disabled] ~ .form-file-label,
+    &:disabled ~ .form-file-label {
+      background-color: $input-disabled-bg;
+    }
+  }
+  
+  .form-file-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    height: $input-height;
+    border: 1px solid $input-border-color;
+    border-radius: $input-border-radius;
+    
+    &::after {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: $input-padding-y $input-padding-x;
+      color: $midnight-navy;
+      content: "Browse";
+      background-color: $light-gray;
+      border-left: 1px solid $input-border-color;
+      border-radius: 0 $input-border-radius $input-border-radius 0;
+      transition: $input-transition;
+    }
+    
+    .form-file-text {
+      display: flex;
+      align-items: center;
+      padding: $input-padding-y $input-padding-x;
+      color: $input-placeholder-color;
+      background-color: $input-bg;
+      border-radius: $input-border-radius 0 0 $input-border-radius;
+      flex: 1 1 auto;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    &:hover::after {
+      background-color: darken($light-gray, 5%);
+    }
+  }
+  
+  // Multiple file input
+  &.form-file-multiple .form-file-label {
+    &::after {
+      content: "Browse Files";
+    }
+    
+    .form-file-text {
+      overflow-y: auto;
+      max-height: 5rem;
+      white-space: normal;
+    }
+  }
+  
+  // Sizing
+  &.form-file-sm {
+    .form-file-input,
+    .form-file-label {
+      height: $input-height-sm;
+    }
+    
+    .form-file-label {
+      &::after,
+      .form-file-text {
+        padding: $input-padding-y-sm $input-padding-x-sm;
+      }
+      
+      .form-file-text {
+        font-size: $font-size-sm;
+      }
+    }
+  }
+  
+  &.form-file-lg {
+    .form-file-input,
+    .form-file-label {
+      height: $input-height-lg;
+    }
+    
+    .form-file-label {
+      &::after,
+      .form-file-text {
+        padding: $input-padding-y-lg $input-padding-x-lg;
+      }
+      
+      .form-file-text {
+        font-size: $font-size-lg;
+      }
+    }
+  }
+}
+
+// Input groups
+.input-group {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  
+  > .form-control,
+  > .form-select,
+  > .form-floating {
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    min-width: 0;
+    
+    &:focus {
+      z-index: 3;
+    }
+  }
+  
+  // Custom file inputs have more complex markup, thus requiring different border radius overrides.
+  > .form-file {
+    display: flex;
+    align-items: center;
+    
+    .form-file-input,
+    .form-file-label {
+      height: 100%;
+    }
+    
+    .form-file-label {
+      border-radius: 0;
+      
+      &::after {
+        border-radius: 0 $input-border-radius $input-border-radius 0;
+      }
+    }
+  }
+  
+  // Ensure buttons are always above inputs for properly styled borders.
+  // This is a kinda hack, but it works.
+  > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: -1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  // Custom select
+  .form-select {
+    width: auto;
+  }
+  
+  // Text input groups
+  .input-group-text {
+    display: flex;
+    align-items: center;
+    padding: $input-padding-y $input-padding-x;
+    font-size: $font-size-base;
+    font-weight: $font-weight-normal;
+    line-height: $input-line-height;
+    color: $input-group-addon-color;
+    text-align: center;
+    white-space: nowrap;
+    background-color: $input-group-addon-bg;
+    border: $input-border-width solid $input-group-addon-border-color;
+    border-radius: $input-border-radius;
+  }
+  
+  // Sizing
+  &.input-group-sm > .form-control,
+  &.input-group-sm > .form-select,
+  &.input-group-sm > .input-group-text,
+  &.input-group-sm > .btn {
+    padding: $input-padding-y-sm $input-padding-x-sm;
+    font-size: $font-size-sm;
+    border-radius: $input-border-radius-sm;
+  }
+  
+  &.input-group-lg > .form-control,
+  &.input-group-lg > .form-select,
+  &.input-group-lg > .input-group-text,
+  &.input-group-lg > .btn {
+    padding: $input-padding-y-lg $input-padding-x-lg;
+    font-size: $font-size-lg;
+    border-radius: $input-border-radius-lg;
+  }
+  
+  // Prepend and append
+  > .input-group-prepend,
+  > .input-group-append {
+    display: flex;
+  }
+  
+  > .input-group-prepend .btn,
+  > .input-group-append .btn {
+    position: relative;
+    z-index: 2;
+  }
+  
+  > .input-group-prepend .btn:focus,
+  > .input-group-append .btn:focus {
+    z-index: 3;
+  }
+  
+  > .input-group-prepend .btn + .btn,
+  > .input-group-prepend .btn + .input-group-text,
+  > .input-group-append .input-group-text + .input-group-text,
+  > .input-group-append .input-group-text + .btn {
+    margin-left: -$input-border-width;
+  }
+  
+  > .input-group-append > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  
+  > .input-group-append:not(:last-child) > .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  > .input-group-prepend > .btn {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  > .input-group-prepend:not(:first-child) > .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}
+
+// Floating labels
+.form-floating {
+  position: relative;
+  
+  > .form-control,
+  > .form-select {
+    height: $form-floating-height;
+    padding: $form-floating-padding-y $form-floating-padding-x;
+  }
+  
+  > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: $form-floating-padding-y $form-floating-padding-x;
+    pointer-events: none;
+    border: $input-border-width solid transparent;
+    transform-origin: 0 0;
+    transition: opacity $input-transition, transform $input-transition;
+    
+    &::after {
+      position: absolute;
+      opacity: 0;
+      left: 0;
+      top: $form-floating-height - 0.5rem;
+      display: block;
+      transition: opacity $input-transition;
+      content: "";
+    }
+  }
+  
+  > .form-control {
+    &::placeholder {
+      color: transparent;
+    }
+    
+    &:focus,
+    &:not(:placeholder-shown) {
+      padding-top: $form-floating-input-padding-t;
+      padding-bottom: $form-floating-input-padding-b;
+    }
+    
+    // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
+    &:-webkit-autofill {
+      padding-top: $form-floating-input-padding-t;
+      padding-bottom: $form-floating-input-padding-b;
+    }
+  }
+  
+  > .form-select {
+    padding-top: $form-floating-input-padding-t;
+    padding-bottom: $form-floating-input-padding-b;
+  }
+  
+  > .form-control:focus,
+  > .form-control:not(:placeholder-shown) {
+    ~ label {
+      opacity: $form-floating-label-opacity;
+      transform: $form-floating-label-transform;
+      
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+  
+  // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
+  > .form-control:-webkit-autofill {
+    ~ label {
+      opacity: $form-floating-label-opacity;
+      transform: $form-floating-label-transform;
+      
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+  
+  > .form-select ~ label {
+    opacity: $form-floating-label-opacity;
+    transform: $form-floating-label-transform;
+    
+    &::after {
+      opacity: 1;
+    }
+  }
+  
+  > .form-control:disabled ~ label,
+  > .form-control[readonly] ~ label {
+    color: $form-floating-label-disabled-color;
+  }
+  
+  // Override Firefox's style
+  > .form-control:-moz-focusring ~ label {
+    color: $form-label-color;
+  }
+  
+  // Disabled state
+  > .form-control:disabled ~ label {
+    &::before {
+      background-color: $input-disabled-bg;
+    }
+  }
+}

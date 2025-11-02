@@ -1,0 +1,33 @@
+# Core
+Django==4.2.18
+Pillow==10.0.0
+python-dotenv==1.0.0
+whitenoise==6.5.0
+
+# Database
+psycopg2-binary==2.9.9
+
+# Authentication
+django-allauth==0.58.2
+
+# API
+djangorestframework==3.14.0
+django-cors-headers==4.3.1
+
+# Development
+django-debug-toolbar==4.2.0
+pytest==7.4.0
+pytest-django==4.5.2
+coverage==7.3.2
+black==23.9.1
+flake8==6.1.0
+isort==5.12.0
+
+# Production
+gunicorn==21.2.0
+psycopg2==2.9.9
+python-decouple==3.8
+
+# Email
+sendgrid==6.11.0
+django-sendgrid-v5==1.2.1

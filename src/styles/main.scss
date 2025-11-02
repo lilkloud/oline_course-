@@ -1,0 +1,135 @@
+// Import variables and mixins
+@import 'variables';
+@import 'reset';
+
+// Import custom components
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/navigation';
+@import 'components/cards';
+@import 'components/footer';
+
+// Import Bootstrap
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/utilities';
+
+// Import Bootstrap components
+@import '~bootstrap/scss/root';
+@import '~bootstrap/scss/reboot';
+@import '~bootstrap/scss/type';
+@import '~bootstrap/scss/images';
+@import '~bootstrap/scss/containers';
+@import '~bootstrap/scss/grid';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/transitions';
+@import '~bootstrap/scss/dropdown';
+@import '~bootstrap/scss/button-group';
+@import '~bootstrap/scss/nav';
+@import '~bootstrap/scss/navbar';
+@import '~bootstrap/scss/card';
+@import '~bootstrap/scss/breadcrumb';
+@import '~bootstrap/scss/pagination';
+@import '~bootstrap/scss/badge';
+@import '~bootstrap/scss/alert';
+@import '~bootstrap/scss/progress';
+@import '~bootstrap/scss/list-group';
+@import '~bootstrap/scss/close';
+@import '~bootstrap/scss/toasts';
+@import '~bootstrap/scss/modal';
+@import '~bootstrap/scss/tooltip';
+@import '~bootstrap/scss/popover';
+@import '~bootstrap/scss/carousel';
+@import '~bootstrap/scss/spinners';
+@import '~bootstrap/scss/offcanvas';
+@import '~bootstrap/scss/placeholders';
+@import '~bootstrap/scss/helpers';
+@import '~bootstrap/scss/utilities/api';
+
+// Import Bootstrap Icons
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+// Custom styles
+:root {
+  --bs-body-bg: #{$body-bg};
+  --bs-body-color: #{$body-color};
+  --bs-primary: #{$royal-deep-purple};
+  --bs-secondary: #{$midnight-navy};
+  --bs-accent: #{$metallic-gold};
+  
+  // Gradients
+  --gradient-primary: #{$gradient-primary};
+  --gradient-secondary: #{$gradient-secondary};
+  --gradient-gold: #{$gradient-gold};
+  --bs-primary: #{$primary};
+  --bs-primary-rgb: #{to-rgb($primary)};
+  --bs-primary-bg-subtle: #{shift-color($primary, 90%)};
+  --bs-primary-border-subtle: #{shift-color($primary, 60%)};
+  --bs-primary-text: #{color-contrast($primary)};
+  --bs-body-font-family: #{$font-family-base};
+  --bs-body-font-size: #{$font-size-base};
+  --bs-body-line-height: #{$line-height-base};
+}
+
+// Custom components
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/cards';
+@import 'components/navbar';
+@import 'components/footer';
+
+// Layout
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1 0 auto;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+// Utilities
+.text-primary { color: $primary !important; }
+.bg-primary { background-color: $primary !important; }
+.bg-surface { background-color: $surface !important; }
+.bg-dark { background-color: $dark !important; }
+
+// Responsive typography
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.05rem;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.1rem;
+  }
+}
+
+// Dark mode overrides
+[data-bs-theme="dark"] {
+  --bs-body-bg: #{$body-bg};
+  --bs-body-color: #{$body-color};
+  
+  .card {
+    background-color: $surface;
+    border-color: $border-color;
+  }
+  
+  .form-control, .form-select {
+    background-color: $surface;
+    border-color: $border-color;
+    color: $body-color;
+    
+    &:focus {
+      background-color: $surface;
+      color: $body-color;
+    }
+  }
+}

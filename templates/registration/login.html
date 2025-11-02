@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login — {{ block.super }}{% endblock %}
+
+{% block meta_description %}Login to your 9kloud account to access your courses and learning dashboard.{% endblock %}
+
+{% block content %}
+<main class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-body p-5">
+          <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Welcome back</h1>
+            <p class="text-muted">Sign in to continue to your account</p>
+          </div>
+
+          {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+              <i class="fas fa-exclamation-circle me-2"></i>
+              Your username and password didn't match. Please try again.
+            </div>
+          {% endif %}
+
+          {% if next %}
+            {% if user.is_authenticated %}
+              <div class="alert alert-warning" role="alert">
+                Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.
+              </div>
+            {% else %}
+              <div class="alert alert-info" role="alert">
+                Please login to see this page.
+              </div>
+            {% endif %}
+          {% endif %}
+
+          <form method="post" action="{% url 'login' %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            
+            <div class="mb-3">
+              <label for="id_username" class="form-label">Email address</label>
+              <input type="email" name="username" id="id_username" 
+                     class="form-control form-control-lg" 
+                     placeholder="Enter your email" 
+                     required 
+                     autofocus
+                     value="{% if form.username.value %}{{ form.username.value }}{% endif %}">
+              <div class="invalid-feedback">
+                Please enter a valid email address.
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <div class="d-flex justify-content-between">
+                <label for="id_password" class="form-label">Password</label>
+                <a href="{% url 'password_reset' %}" class="small text-decoration-none">
+                  Forgot password?
+                </a>
+              </div>
+              <div class="input-group">
+                <input type="password" name="password" id="id_password" 
+                       class="form-control form-control-lg" 
+                       placeholder="Enter your password" 
+                       required>
+                <button class="btn btn-outline-secondary toggle-password" type="button" 
+                        data-bs-toggle="tooltip" 
+                        title="Show password">
+                  <i class="far fa-eye"></i>
+                </button>
+                <div class="invalid-feedback">
+                  Please enter your password.
+                </div>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary btn-lg" type="submit">
+                <i class="fas fa-sign-in-alt me-2"></i> Sign in
+              </button>
+            </div>
+          </form>
+
+          <div class="text-center mt-4">
+            <p class="mb-0">Don't have an account? 
+              <a href="{% url 'signup' %}" class="text-decoration-none">
+                Sign up
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Form validation
+(function () {
+  'use strict'
+  
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+  
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      
+      form.classList.add('was-validated')
+    }, false)
+  })
+  
+  // Toggle password visibility
+  document.querySelectorAll('.toggle-password').forEach(function(button) {
+    button.addEventListener('click', function() {
+      const input = this.previousElementSibling;
+      const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+      input.setAttribute('type', type);
+      this.querySelector('i').classList.toggle('fa-eye');
+      this.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+  });
+})()
+</script>
+{% endblock %}

@@ -1,0 +1,12 @@
+include README.md
+include LICENSE
+include requirements.txt
+recursive-include ninekloud/templates *
+recursive-include ninekloud/static *
+recursive-include accounts/templates *
+recursive-include accounts/static *
+recursive-include courses/templates *
+recursive-include courses/static *
+recursive-include core/templates *
+recursive-include core/static *
+include .env.example

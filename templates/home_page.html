@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}9kloud — Online School{% endblock %}
+
+{% block content %}
+  <!-- Hero / Carousel -->
+  <div class="container-fluid p-0 pb-5 mb-5">
+    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#header-carousel" data-slide-to="1"></li>
+        <li data-target="#header-carousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active" style="min-height: 300px;">
+          <img class="position-relative w-100" src="/static/img/carousel-1.jpg" style="min-height: 300px; object-fit: cover;">
+          <div class="carousel-caption d-flex align-items-center justify-content-center">
+            <div class="p-5" style="width: 100%; max-width: 900px;">
+              <h5 class="text-white text-uppercase mb-md-3">Learn Without Limits</h5>
+              <h1 class="display-3 text-white mb-md-4">Build Skills With 9kloud</h1>
+              <a href="/courses/" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Browse Courses</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" style="min-height: 300px;">
+          <img class="position-relative w-100" src="/static/img/carousel-2.jpg" style="min-height: 300px; object-fit: cover;">
+          <div class="carousel-caption d-flex align-items-center justify-content-center">
+            <div class="p-5" style="width: 100%; max-width: 900px;">
+              <h5 class="text-white text-uppercase mb-md-3">Top Instructors</h5>
+              <h1 class="display-3 text-white mb-md-4">Practical, Project‑Driven</h1>
+              <a href="/courses/" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Start Learning</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" style="min-height: 300px;">
+          <img class="position-relative w-100" src="/static/img/carousel-3.jpg" style="min-height: 300px; object-fit: cover;">
+          <div class="carousel-caption d-flex align-items-center justify-content-center">
+            <div class="p-5" style="width: 100%; max-width: 900px;">
+              <h5 class="text-white text-uppercase mb-md-3">Anytime, Anywhere</h5>
+              <h1 class="display-3 text-white mb-md-4">Dark, Focused Experience</h1>
+              <a href="/courses/" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">Explore</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Courses -->
+  <div class="container-fluid py-5">
+    <div class="container py-5">
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h5 class="text-primary text-uppercase mb-1" style="letter-spacing: 5px;">Courses</h5>
+          <h1 class="m-0">Popular on 9kloud</h1>
+        </div>
+        <a class="btn btn-outline-light" href="/courses/">See all</a>
+      </div>
+      <div class="row">
+        {% for c in featured %}
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="rounded overflow-hidden mb-2">
+            {% if c.cover_image %}
+            <img class="img-fluid" src="/static/{{ c.cover_image }}" alt="{{ c.title }}">
+            {% endif %}
+            <div class="bg-secondary p-4">
+              <div class="d-flex justify-content-between mb-3">
+                <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ c.students|intcomma }} Students</small>
+                <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{ c.duration_minutes|floatformat:0 }}m</small>
+              </div>
+              <a class="h5" href="/courses/{{ c.slug }}/">{{ c.title }}</a>
+              <div class="border-top mt-4 pt-4">
+                <div class="d-flex justify-content-between">
+                  <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ c.rating }}</h6>
+                  <h5 class="m-0">₦{{ c.price_cents|floatformat:-2|intcomma }}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center text-muted">Courses will appear here.</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

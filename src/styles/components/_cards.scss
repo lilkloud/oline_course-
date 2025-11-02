@@ -1,0 +1,230 @@
+// Card Styles
+.card {
+  border: none;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba($midnight-navy, 0.08);
+  background: $white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba($midnight-navy, 0.15);
+  }
+  
+  // Card Image
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+  }
+  
+  // Card Body
+  .card-body {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+    .card-title {
+      color: $midnight-navy;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      line-height: 1.4;
+    }
+    
+    .card-text {
+      color: lighten($midnight-navy, 20%);
+      flex-grow: 1;
+      margin-bottom: 1.25rem;
+    }
+    
+    .card-meta {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      color: lighten($midnight-navy, 30%);
+      font-size: 0.875rem;
+      
+      .meta-item {
+        display: flex;
+        align-items: center;
+        margin-right: 1rem;
+        
+        i {
+          margin-right: 0.4rem;
+          color: $metallic-gold;
+        }
+        
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  
+  // Card Footer
+  .card-footer {
+    background: transparent;
+    border-top: 1px solid rgba($midnight-navy, 0.08);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .price {
+      font-weight: 700;
+      color: $metallic-gold;
+      font-size: 1.25rem;
+      margin: 0;
+      
+      .original-price {
+        text-decoration: line-through;
+        color: lighten($midnight-navy, 40%);
+        font-size: 0.9rem;
+        margin-left: 0.5rem;
+      }
+    }
+    
+    .btn {
+      padding: 0.5rem 1.25rem;
+      font-weight: 500;
+    }
+  }
+  
+  // Card Badge
+  .card-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: $metallic-gold;
+    color: $white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 1;
+  }
+  
+  // Card Hover Effects
+  .card-hover-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba($royal-deep-purple, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    
+    .btn {
+      margin: 0.5rem 0;
+      min-width: 160px;
+      justify-content: center;
+      
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  
+  &:hover .card-hover-overlay {
+    opacity: 1;
+  }
+}
+
+// Card Variations
+.card-course {
+  .card-body {
+    .instructor {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      
+      .instructor-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 0.75rem;
+        border: 2px solid $metallic-gold;
+      }
+      
+      .instructor-info {
+        h6 {
+          margin: 0;
+          font-size: 0.9rem;
+          color: $midnight-navy;
+        }
+        
+        p {
+          margin: 0;
+          font-size: 0.8rem;
+          color: lighten($midnight-navy, 30%);
+        }
+      }
+    }
+    
+    .rating {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      
+      .stars {
+        color: $metallic-gold;
+        margin-right: 0.5rem;
+        
+        i {
+          margin-right: 0.1rem;
+        }
+      }
+      
+      .reviews {
+        font-size: 0.85rem;
+        color: lighten($midnight-navy, 30%);
+      }
+    }
+  }
+}
+
+// Dark Mode Support
+[data-bs-theme="dark"] {
+  .card {
+    background: lighten($midnight-navy, 5%);
+    box-shadow: 0 4px 20px rgba($black, 0.2);
+    
+    .card-title {
+      color: $white;
+    }
+    
+    .card-text {
+      color: rgba($white, 0.7);
+    }
+    
+    .card-meta {
+      color: rgba($white, 0.6);
+    }
+    
+    .card-footer {
+      border-top-color: rgba($white, 0.1);
+    }
+  }
+  
+  .card-course .card-body .instructor .instructor-info {
+    h6 {
+      color: $white;
+    }
+    
+    p {
+      color: rgba($white, 0.6);
+    }
+  }
+}

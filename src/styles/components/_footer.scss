@@ -1,0 +1,298 @@
+// Footer Styles
+.footer {
+  background: $midnight-navy;
+  color: rgba($white, 0.7);
+  padding: 5rem 0 0;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: $gradient-gold;
+  }
+  
+  // Footer Widgets
+  .footer-widget {
+    margin-bottom: 2.5rem;
+    
+    .widget-title {
+      color: $white;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 0.75rem;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: $gradient-gold;
+      }
+    }
+    
+    // About Widget
+    &.about-widget {
+      p {
+        margin-bottom: 1.5rem;
+      }
+      
+      .footer-logo {
+        color: $white;
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        display: inline-block;
+        text-decoration: none;
+        
+        span {
+          color: $metallic-gold;
+        }
+      }
+      
+      .social-links {
+        display: flex;
+        margin-top: 1.5rem;
+        
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: rgba($white, 0.1);
+          color: $white;
+          margin-right: 0.75rem;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            background: $metallic-gold;
+            color: $midnight-navy;
+            transform: translateY(-3px);
+          }
+          
+          i {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+    
+    // Links Widget
+    &.links-widget {
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+        li {
+          margin-bottom: 0.75rem;
+          
+          &::before {
+            content: '→';
+            color: $metallic-gold;
+            margin-right: 0.5rem;
+            font-weight: bold;
+          }
+          
+          a {
+            color: rgba($white, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            
+            &:hover {
+              color: $metallic-gold;
+              padding-left: 0.5rem;
+            }
+          }
+        }
+      }
+    }
+    
+    // Contact Widget
+    &.contact-widget {
+      .contact-info {
+        p {
+          display: flex;
+          margin-bottom: 1rem;
+          
+          i {
+            color: $metallic-gold;
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            font-size: 1.1rem;
+            min-width: 20px;
+          }
+          
+          a {
+            color: rgba($white, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            
+            &:hover {
+              color: $metallic-gold;
+            }
+          }
+        }
+      }
+    }
+    
+    // Newsletter Widget
+    &.newsletter-widget {
+      .newsletter-form {
+        position: relative;
+        margin-top: 1.5rem;
+        
+        .form-control {
+          background: rgba($white, 0.05);
+          border: 1px solid rgba($white, 0.1);
+          color: $white;
+          height: 50px;
+          border-radius: 50px;
+          padding: 0.5rem 1.25rem;
+          
+          &::placeholder {
+            color: rgba($white, 0.5);
+          }
+          
+          &:focus {
+            background: rgba($white, 0.1);
+            border-color: $metallic-gold;
+            box-shadow: 0 0 0 0.2rem rgba($metallic-gold, 0.25);
+          }
+        }
+        
+        .btn-newsletter {
+          position: absolute;
+          top: 5px;
+          right: 5px;
+          height: 40px;
+          padding: 0 1.5rem;
+          background: $gradient-gold;
+          border: none;
+          border-radius: 50px;
+          color: $white;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba($metallic-gold, 0.3);
+          }
+        }
+      }
+      
+      .newsletter-text {
+        margin-top: 1.5rem;
+        font-size: 0.9rem;
+        color: rgba($white, 0.5);
+      }
+    }
+  }
+  
+  // Footer Bottom
+  .footer-bottom {
+    border-top: 1px solid rgba($white, 0.1);
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+    
+    .copyright {
+      color: rgba($white, 0.5);
+      margin: 0;
+      font-size: 0.9rem;
+      
+      a {
+        color: $metallic-gold;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        
+        &:hover {
+          color: $white;
+          text-decoration: underline;
+        }
+      }
+    }
+    
+    .footer-menu {
+      display: flex;
+      justify-content: flex-end;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      
+      @media (max-width: 767.98px) {
+        justify-content: flex-start;
+        margin-top: 1rem;
+      }
+      
+      li {
+        margin-left: 1.5rem;
+        
+        @media (max-width: 767.98px) {
+          margin: 0 1rem 0 0;
+        }
+        
+        a {
+          color: rgba($white, 0.5);
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: all 0.3s ease;
+          
+          &:hover {
+            color: $metallic-gold;
+          }
+        }
+      }
+    }
+  }
+  
+  // Back to Top Button
+  .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: $gradient-gold;
+    color: $white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba($metallic-gold, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 999;
+    
+    &.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    &:hover {
+      transform: translateY(-5px) !important;
+      box-shadow: 0 8px 25px rgba($metallic-gold, 0.4);
+    }
+  }
+}
+
+// Dark Mode Support
+[data-bs-theme="dark"] {
+  .footer {
+    background: darken($midnight-navy, 5%);
+  }
+}

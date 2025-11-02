@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}My Courses — 9kloud{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="d-flex align-items-center justify-content-between mb-4">
+    <div>
+      <h5 class="text-primary text-uppercase mb-1" style="letter-spacing: 5px;">Account</h5>
+      <h1 class="m-0">My Courses</h1>
+    </div>
+  </div>
+  <div class="row">
+    {% for e in enrollments %}
+    <div class="col-lg-4 col-md-6 mb-4">
+      <div class="rounded overflow-hidden mb-2">
+        {% if e.course.cover_image %}
+        <img class="img-fluid" src="/static/{{ e.course.cover_image }}" alt="{{ e.course.title }}">
+        {% endif %}
+        <div class="bg-secondary p-4">
+          <div class="d-flex justify-content-between mb-3">
+            <small class="m-0"><i class="fa fa-users text-primary mr-2"></i>{{ e.course.students|intcomma }} Students</small>
+            <small class="m-0"><i class="far fa-clock text-primary mr-2"></i>{{ e.course.duration_minutes|floatformat:0 }}m</small>
+          </div>
+          <a class="h5" href="/courses/{{ e.course.slug }}/">{{ e.course.title }}</a>
+          <div class="border-top mt-4 pt-4">
+            <div class="d-flex justify-content-between">
+              <h6 class="m-0"><i class="fa fa-star text-primary mr-2"></i>{{ e.course.rating }}</h6>
+              <h5 class="m-0">₦{{ e.course.price_cents|floatformat:-2|intcomma }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center text-muted">You're not enrolled in any courses yet.</div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

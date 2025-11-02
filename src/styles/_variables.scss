@@ -1,0 +1,135 @@
+// Color system
+$primary: #6c7bff;// Color System
+// Primary Colors
+$royal-deep-purple: #3B1C32;  // Primary brand color - Royal Deep Purple
+$midnight-navy: #1A2238;       // Secondary color - Midnight Navy Blue
+$metallic-gold: #C8A951;       // Accent color - Metallic Gold
+
+// Extended color palette
+$dark-purple: #2A1420;         // Darker shade of royal deep purple
+$light-purple: #5A2A4A;        // Lighter shade of royal deep purple
+$light-navy: #2A3A5F;          // Lighter shade of midnight navy
+$dark-navy: #0F1425;           // Darker shade of midnight navy
+$light-gold: #E8C87E;          // Lighter shade of metallic gold
+$dark-gold: #A88B3A;           // Darker shade of metallic gold
+
+// Theme colors map for Bootstrap
+$primary: $royal-deep-purple;
+$secondary: $midnight-navy;
+$accent: $metallic-gold;
+$success: #48bb78;
+$info: #4299e1;
+$warning: #f6ad55;
+$danger: #f56565;
+$light: #f8f9fa;
+$dark: #1a202c;
+$body-bg: #f7fafc;
+$body-color: $midnight-navy;
+$text-muted: #4a5568;
+
+// Theme colors
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "accent": $accent,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark
+);
+
+// Custom colors
+$light-gray: #edf2f7;
+$medium-gray: #e2e8f0;
+$dark-gray: #4a5568;
+$white: #ffffff;
+$black: #000000;
+
+// Gradients
+$gradient-primary: linear-gradient(135deg, $royal-deep-purple 0%, $dark-purple 100%);
+$gradient-secondary: linear-gradient(135deg, $midnight-navy 0%, $dark-navy 100%);
+$gradient-gold: linear-gradient(135deg, $metallic-gold 0%, $dark-gold 100%);
+
+// Typography
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+$headings-font-weight: 700;
+
+// Spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4.5,
+  7: $spacer * 6
+);
+
+// Grid breakpoints
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// Container max widths
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+// Border radius
+$border-radius: 0.25rem;
+$border-radius-sm: 0.2rem;
+$border-radius-lg: 0.3rem;
+$border-radius-pill: 50rem;
+
+// Transitions
+$transition-base: all 0.2s ease-in-out;
+$transition-fade: opacity 0.15s linear;
+$transition-collapse: height 0.35s ease;
+
+// Shadows
+$box-shadow-sm: 0 0.125rem 0.25rem rgba($dark, 0.075);
+$box-shadow: 0 0.5rem 1rem rgba($dark, 0.15);
+$box-shadow-lg: 0 1rem 3rem rgba($dark, 0.175);
+
+// Z-index master list
+$zindex-dropdown: 1000;
+$zindex-sticky: 1020;
+$zindex-fixed: 1030;
+$zindex-offcanvas-backdrop: 1040;
+$zindex-offcanvas: 1045;
+$zindex-modal-backdrop: 1050;
+$zindex-modal: 1055;
+$zindex-popover: 1070;
+$zindex-tooltip: 1080;
+$zindex-toast: 1090;
+
+// Form controls
+$input-bg: $surface;
+$input-color: $body-color;
+$input-border-color: $border-color;
+$input-focus-bg: $surface;
+$input-focus-border-color: $primary;
+$input-focus-color: $body-color;
+$input-placeholder-color: #6c757d;
+
+// Cards
+$card-bg: $surface;
+$card-cap-bg: rgba($dark, 0.03);
+$card-border-color: $border-color;
