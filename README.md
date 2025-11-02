@@ -5,6 +5,7 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
 ## 🌟 Features
 
 ### Core Features
+
 - **User Authentication**: Secure signup, login, and password reset functionality
 - **Course Management**: Browse, search, and enroll in courses
 - **Interactive Learning**: Track progress through course modules and lessons
@@ -13,9 +14,10 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
 - **Dark Mode**: Built-in dark theme for comfortable learning
 
 ### Technical Features
-- **Django 4.2+**: Robust backend framework
-- **Bootstrap 5**: Modern, responsive frontend framework
-- **Vite.js**: Fast frontend asset building
+
+- **[Django](https://www.djangoproject.com/) 4.2+**: Robust backend framework
+- **[Bootstrap 5](https://getbootstrap.com/)**: Modern, responsive frontend framework
+- **[Vite.js](https://vitejs.dev/)**: Fast frontend asset building
 - **SCSS**: Advanced CSS with variables and mixins
 - **SQLite/PostgreSQL**: Flexible database options
 - **Django Admin**: Powerful built-in admin interface
@@ -23,6 +25,7 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Python 3.9+
 - Node.js 16+ (for frontend assets)
 - PostgreSQL (for production, SQLite for development)
@@ -30,12 +33,14 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
 ### Local Development Setup
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/lilkloud/online_course-.git
    cd online_course-
    ```
 
 2. **Set up Python virtual environment**
+
    ```bash
    # Windows
    python -m venv .venv
@@ -46,7 +51,9 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
    ```
 
 3. **Set up environment variables**
+
    Create a `.env` file in the project root:
+
    ```env
    DEBUG=True
    SECRET_KEY=your-secret-key-here
@@ -54,16 +61,19 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
    ```
 
 4. **Run database migrations**
+
    ```bash
    python manage.py migrate
    ```
 
 5. **Create a superuser**
+
    ```bash
    python manage.py createsuperuser
    ```
 
 6. **Set up frontend dependencies**
+
    ```bash
    npm install
    npm run dev  # For development with hot-reload
@@ -72,19 +82,23 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
    ```
 
 7. **Run the development server**
+
    ```bash
    python manage.py runserver
    ```
 
 8. **Access the application**
-   - Homepage: http://127.0.0.1:8000/
-   - Admin: http://127.0.0.1:8000/admin/
-   - API: http://127.0.0.1:8000/api/
+
+   - Homepage: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+   - Admin: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
+   - API: [http://127.0.0.1:8000/api/](http://127.0.0.1:8000/api/)
 
 ## 📦 Production Deployment
 
 ### Environment Variables
+
 Create a `.env.prod` file with your production settings:
+
 ```env
 DEBUG=False
 SECRET_KEY=your-production-secret-key
@@ -100,16 +114,23 @@ DEFAULT_FROM_EMAIL=your-email@example.com
 ```
 
 ### Deployment Steps
+
 1. **Set up a production database** (PostgreSQL recommended)
+
 2. **Collect static files**
+
    ```bash
    python manage.py collectstatic --noinput
    ```
+
 3. **Run database migrations**
+
    ```bash
    python manage.py migrate
    ```
+
 4. **Set up a production web server** (Gunicorn + Nginx recommended)
+
    ```bash
    # Install Gunicorn
    pip install gunicorn
@@ -120,7 +141,7 @@ DEFAULT_FROM_EMAIL=your-email@example.com
 
 ## 🛠 Project Structure
 
-```
+```text
 ├── core/                  # Core application
 ├── courses/              # Courses app
 │   ├── migrations/       # Database migrations
@@ -142,9 +163,13 @@ DEFAULT_FROM_EMAIL=your-email@example.com
 ## 🤝 Contributing
 
 1. Fork the repository
+
 2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+
 4. Push to the branch (`git push origin feature/AmazingFeature`)
+
 5. Open a Pull Request
 
 ## 📄 License
