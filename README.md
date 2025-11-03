@@ -19,18 +19,20 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
 - **[Bootstrap 5](https://getbootstrap.com/)**: Modern, responsive frontend framework
 - **[Vite.js](https://vitejs.dev/)**: Fast frontend asset building
 - **SCSS**: Advanced CSS with variables and mixins
-- **SQLite/PostgreSQL**: Flexible database options
-- **Django Admin**: Powerful built-in admin interface
+- **PostgreSQL**: Production-ready database
+- **Docker**: Containerized development and production environments
+- **Nginx**: High-performance web server
+- **Gunicorn**: Production-grade WSGI server
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Python 3.9+
-- Node.js 16+ (for frontend assets)
-- PostgreSQL (for production, SQLite for development)
+- [Docker](https://www.docker.com/get-started/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [Git](https://git-scm.com/)
 
-### Local Development Setup
+### Local Development with Docker
 
 1. **Clone the repository**
 
@@ -39,123 +41,65 @@ A modern, responsive online learning platform built with Django and Bootstrap 5.
    cd online_course-
    ```
 
-2. **Set up Python virtual environment**
+2. **Set up environment variables**
 
    ```bash
-   # Windows
-   python -m venv .venv
-   .\.venv\Scripts\activate
-   
-   # Install Python dependencies
-   pip install -r requirements.txt
+   cp .env.example .env
    ```
-
-3. **Set up environment variables**
-
-   Create a `.env` file in the project root:
-
+   
+   Edit the `.env` file with your configuration:
    ```env
    DEBUG=True
    SECRET_KEY=your-secret-key-here
-   DATABASE_URL=sqlite:///db.sqlite3
+   DB_NAME=online_courses
+   DB_USER=postgres
+   DB_PASSWORD=postgres
+   DB_HOST=db
+   DB_PORT=5432
+   ```
+
+3. **Build and start the containers**
+
+   ```bash
+   docker-compose up --build
    ```
 
 4. **Run database migrations**
 
+   In a new terminal:
    ```bash
-   python manage.py migrate
+   docker-compose exec web python manage.py migrate
    ```
 
 5. **Create a superuser**
 
    ```bash
-   python manage.py createsuperuser
+   docker-compose exec web python manage.py createsuperuser
    ```
 
-6. **Set up frontend dependencies**
+6. **Access the application**
 
-   ```bash
-   npm install
-   npm run dev  # For development with hot-reload
-   # or
-   npm run build  # For production build
-   ```
+   - Website: [http://localhost:8000](http://localhost:8000)
+   - Admin: [http://localhost:8000/admin/](http://localhost:8000/admin/)
 
-7. **Run the development server**
+## 🏗 Project Structure
 
-   ```bash
-   python manage.py runserver
-   ```
-
-8. **Access the application**
-
-   - Homepage: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-   - Admin: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
-   - API: [http://127.0.0.1:8000/api/](http://127.0.0.1:8000/api/)
-
-## 📦 Production Deployment
-
-### Environment Variables
-
-Create a `.env.prod` file with your production settings:
-
-```env
-DEBUG=False
-SECRET_KEY=your-production-secret-key
-ALLOWED_HOSTS=.yourdomain.com
-DATABASE_URL=postgres://user:password@localhost:5432/dbname
-EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-EMAIL_HOST=your-smtp-host
-EMAIL_PORT=587
-EMAIL_USE_TLS=True
-EMAIL_HOST_USER=your-email@example.com
-EMAIL_HOST_PASSWORD=your-email-password
-DEFAULT_FROM_EMAIL=your-email@example.com
 ```
-
-### Deployment Steps
-
-1. **Set up a production database** (PostgreSQL recommended)
-
-2. **Collect static files**
-
-   ```bash
-   python manage.py collectstatic --noinput
-   ```
-
-3. **Run database migrations**
-
-   ```bash
-   python manage.py migrate
-   ```
-
-4. **Set up a production web server** (Gunicorn + Nginx recommended)
-
-   ```bash
-   # Install Gunicorn
-   pip install gunicorn
-   
-   # Run Gunicorn
-   gunicorn ninekloud.wsgi:application --bind 0.0.0.0:8000
-   ```
-
-## 🛠 Project Structure
-
-```text
-├── core/                  # Core application
-├── courses/              # Courses app
-│   ├── migrations/       # Database migrations
-│   ├── templates/        # App-specific templates
-│   ├── admin.py          # Admin configuration
-│   ├── models.py         # Database models
-│   └── views.py          # View functions
-├── static/               # Static files (CSS, JS, images)
-│   ├── css/              # Compiled CSS
-│   ├── js/               # JavaScript files
-│   └── img/              # Image assets
-├── templates/            # Global templates
-├── .env.example          # Example environment variables
-├── manage.py             # Django management script
+online_course-/
+├── .github/            # GitHub workflows and templates
+├── courses/            # Main Django app
+├── media/              # User-uploaded files
+├── ninekloud/          # Project settings
+├── static/             # Static files (CSS, JS, images)
+├── templates/          # HTML templates
+├── .env.example        # Example environment variables
+├── .gitignore          # Git ignore file
+├── docker-compose.yml  # Docker Compose configuration
+├── Dockerfile          # Docker configuration
+├── manage.py           # Django management script
+├── nginx/              # Nginx configuration
+│   └── nginx.conf
+└── requirements.txt    # Python dependencies
 ├── requirements.txt      # Python dependencies
 └── vite.config.js        # Vite configuration
 ```
